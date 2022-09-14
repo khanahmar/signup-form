@@ -13,37 +13,48 @@ const userData = document.getElementById("userdata");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  if ((userName === "@", "#", "$")) {
-    alert(`spacial sylmbols not allowed`);
-  }
-  if (userName.value.length === 0) {
-    alert(` Please enter your name`);
-  } else {
-    console.log(`Name : ${userName.value}`);
-  }
+  validateUser(userName);
+  validateEmail(userEmail);
+  validatePass(userPass, userRePass);
 
-  if (userEmail.value.length === 0) {
-    alert(` Please enter your Email`);
-  } else {
-    console.log(`Email : ${userEmail.value}`);
-  }
+  userData.innerHTML = `Name :${userName.value} <br> Email : ${userEmail.value} <br> Password :${userPass.value}<br> Confirm Password :${userRePass.value}`;
+  clearForm();
+});
 
-  if (userPass.value.length > 10) {
-    alert(`You cant enter more than 10 characters`);
+// validate userName
+function validateUser(userName) {
+  if (!userName.value.match(/^[A-Za-z]+$/)) {
+    alert("invalid name");
     return;
   }
-  if (userEmail.value.length === 0) {
-    alert(` Please enter your Password`);
-  } else {
-    console.log(`Password : ${userPass.value}`);
-  }
+  console.log(`Name ${userName.value} is valid`);
+}
 
-  if (userRePass.value === userPass.value) {
-    console.log(`confirm pass : ${userRePass.value}`);
-  } else {
-    alert(`Yours password does not match`);
-  }
-  
-  userData.innerHTML = `Name :${userName.value} <br> Email : ${userEmail.value} <br> Password :${userPass.value}<br> Confirm Password :${userRePass.value}`;
+// validate email
+function validateEmail(userEmail) {
+  return String(userEmail)
+    .toLowerCase()
+    .match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    );
+}
 
-});
+// validate password
+
+function validatePass(userPass, userRePass) {
+  if (userPass.value.trim().length > 7 && userPass.value.trim().length < 20) {
+    if (userPass.value === userRePass.value) {
+      console.log(`Password : ${userPass.value}`);
+    } else {
+      alert(" Password donot match");
+    }
+  } else {
+    alert("invalid password");
+  }
+}
+function clearForm() {
+  document.getElementById("user-name") = "";
+  document.getElementById("user-email") = "";
+  document.getElementById("user-pass") = "";
+  document.getElementById("user-repass") = "";
+}
