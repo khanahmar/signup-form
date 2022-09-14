@@ -9,25 +9,29 @@ const userEmail = document.getElementById("user-email");
 const userPass = document.getElementById("user-pass");
 const userRePass = document.getElementById("user-repass");
 const userData = document.getElementById("userdata");
+const massage = document.getElementsByClassName("massage");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
 
   validateUser(userName);
-  validateEmail(userEmail);
-  validatePass(userPass, userRePass);
-
-  userData.innerHTML = `Name :${userName.value} <br> Email : ${userEmail.value} <br> Password :${userPass.value}<br> Confirm Password :${userRePass.value}`;
-  clearForm();
+  // validateEmail(userEmail);
+  // validatePass(userPass, userRePass);
 });
 
 // validate userName
 function validateUser(userName) {
   if (!userName.value.match(/^[A-Za-z]+$/)) {
-    alert("invalid name");
+    massage[0].innerHTML = "invalid username";
+    massage[0].classList.add("error");
+    userName.classList.add("error-input");
+    // console.log("invalid user")
     return;
   }
-  console.log(`Name ${userName.value} is valid`);
+  massage[0].innerHTML = "valide username";
+  massage[0].classList.add("success");
+  userName.classList.add("success-input");
+  userData.innerHTML = `Name ${userName.value} <br>`;
 }
 
 // validate email
@@ -52,9 +56,12 @@ function validatePass(userPass, userRePass) {
     alert("invalid password.Password should be atleast 8 characters long");
   }
 }
-function clearForm() {
-  document.getElementById("user-name") = "";
-  document.getElementById("user-email") = "";
-  document.getElementById("user-pass") = "";
-  document.getElementById("user-repass") = "";
-}
+
+// Make another event listner
+userName.addEventListener("focusout", (e) => {
+  if (userName.value.match(/^[A-Za-z]+$/)) {
+    userName.classList.add("success-input");
+  } else {
+    userName.classList.add("error-input");
+  }
+});

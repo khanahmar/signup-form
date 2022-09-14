@@ -52,7 +52,9 @@ h1 {
 }
 
 .form-control input:focus {
-  border: crimson;
+  outline: none !important;
+  border-color: rgb(0, 68, 255);
+  background-color: rgb(208, 196, 196);
 }
 
 #submit {
@@ -66,8 +68,24 @@ h1 {
   border: hidden;
   transition: 0.4s ease-in-out;
 }
+
 #submit:hover {
   background-color: rgb(242, 50, 89);
   color: white;
   transform: scale(1.2);
+}
+
+.error {
+  color: red;
+}
+.success {
+  color: green;
+}
+.error-input {
+  outline: none !important;
+  border-color: red !important;
+}
+.success-input {
+  outline: none !important;
+  border-color: green !important;
 }
