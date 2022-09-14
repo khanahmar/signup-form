@@ -49,7 +49,7 @@ function validatePass(userPass, userRePass) {
       alert(" Password donot match");
     }
   } else {
-    alert("invalid password");
+    alert("invalid password.Password should be atleast 8 characters long");
   }
 }
 function clearForm() {
