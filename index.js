@@ -30,20 +30,20 @@ function validateUser(userName) {
   massage[0].innerHTML = "valide username";
   massage[0].classList.add("success");
   userName.classList.add("success-input");
-  userData.innerHTML = `Name :${userName.value}`;
+  userData.innerHTML += `Name :${userName.value} <br>`;
 }
 
 // validate email
 function validateEmail(userEmail) {
   if (
-    String(userEmail)
+    String(userEmail.value)
       .toLowerCase()
       .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
   ) {
     massage[1].innerHTML = "valid email";
     massage[1].classList.add("success");
     userEmail.classList.add("success-input");
-    userData.innerHTML = `Email :${userEmail.value}`;
+    userData.innerHTML += `Email :${userEmail.value} <br>`;
   } else {
     massage[1].innerHTML = "invalid email";
     massage[1].classList.add("error");
@@ -58,12 +58,12 @@ function validatePass(userPass, userRePass) {
     massage[2].classList.add("success");
     massage[2].innerHTML = "vlaid password";
     userPass.classList.add("success-input");
-    userData.innerHTML = `Password :${userPass.value}`;
+    userData.innerHTML += `Password :${userPass.value}<br>`;
     if (userPass.value === userRePass.value) {
       massage[3].classList.add("success");
       massage[3].innerHTML = "valide password";
       userRePass.classList.add("success-input");
-      userData.innerHTML = `Confirm pass :${userRePass.value}`;
+      userData.innerHTML += `Confirm pass :${userRePass.value}<br>`;
     } else {
       massage[3].classList.add("error");
       massage[3].innerHTML = "Confirm password donot match";
